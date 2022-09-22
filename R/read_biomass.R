@@ -56,13 +56,13 @@ violating(biomass, out) %>% View()
 ### missing data
 # 2015 round 1 Arh RTC 4
 # 2016 round 1 /2 ALR 5 values missing
-# 2017 round 2 FAU, VIK, ARH missing data, probably not weighed.
-# 2017 missing biomass and other info from ALR 2, GUD 2, HOG 2, LAV 2, ULV 2
+# 2017 round 2 FAU, VIK, ARH missing data, probably not weighed. FOUND!!!
+# 2017 missing biomass and other info from ALR 2 (FOUND!!!), HOG 2 (FOUND!!!), LAV 2, ULV 2, GUD 2
 # 2018, 2020 some missing, but already indicated
 # 2019 all data missing
 # 2021 some sites missing
 
-biomass %>% filter(is.na(biomass), !year %in% c(2019, 2021)) %>% View()
+biomass %>% filter(is.na(biomass), !year %in% c(2021)) %>% View()
 
 biomass %>%
   mutate(treatment = factor(treatment, levels = c("B", "F", "G", "FB", "GB", "FG", "FGB"))) %>%
