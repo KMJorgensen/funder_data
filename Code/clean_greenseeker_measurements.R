@@ -8,20 +8,20 @@ greenseeker <- read_csv2("Data/FUNDER_raw_greenseeker_measurements_2022.csv")
 # Comments column describes weather conditions on the day measurements were done. In raw data-file it's entered on the two first rows of each new site (will be interpreted as belonging to a single plot). This information will be broken out to a separate dataset that only displays the weather conditions.
 
 # Clean up names according to FUNDER naming convention
-green <- greenseeker |>
+greenseeker <- greenseeker |>
   select(-comment, -block) |>
   separate(ID, c("site", "blockID", "treat")) |>
   select(-site, -treat)
 
-green$Site <- str_to_title(green$Site)
+greenseeker$Site <- str_to_title(greenseeker$Site)
 
 # Fix plotIDs
-green <- green |>
+greenseeker <- greenseeker |>
   mutate(blockID = paste(Site, blockID, sep = "")) |>
   mutate(plotID = paste(blockID, treatment, sep = ""))
 
 # Fix siteIDs
-green <- green |>
+greenseeker <- greenseeker |>
   rename("siteID" = "Site") |>
   mutate(siteID = recode(siteID,
                          # old name (replace) = valid name (do not change)
@@ -38,12 +38,9 @@ green <- green |>
                          'Vik' = "Vikesland",
                          'Ves' = "Veskre"))
 
-# Pivot to long format, first by measurement time
-
 # Change order of columns
-green <- green |>
+greenseeker <- greenseeker |>
   select(date, siteID, blockID, plotID, treatment, time_1, time_2, "1_before", "2_before", "1_after", "2_after")
-
 
 green_first <- green |>
   select(!c(time_2, "1_after", "2_after")) |>
@@ -64,9 +61,6 @@ green_second <- green |>
   rename("time" = "time_2")
 
 green.long <- rbind(green_first, green_second)
-
-
-
 
 ##################################################################
 
