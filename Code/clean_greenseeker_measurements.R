@@ -42,7 +42,11 @@ greenseeker <- greenseeker |>
 greenseeker <- greenseeker |>
   select(date, siteID, blockID, plotID, treatment, time_1, time_2, "1_before", "2_before", "1_after", "2_after")
 
-green_first <- green |>
+# Measurements were done twice during the same day, once before noon ("first") and once in the afternoon ("second")
+# Dataset is split to clean each measurement event separately before being merged together again
+
+# First measurement
+green_first <- greenseeker |>
   select(!c(time_2, "1_after", "2_after")) |>
   pivot_longer(!c(date, siteID, blockID, plotID, treatment, time_1), names_to = "rep", values_to = "record") |>
   mutate(rep = recode(rep,
@@ -51,7 +55,8 @@ green_first <- green |>
   mutate(measurement = "first") |>
   rename("time" = "time_1")
 
-green_second <- green |>
+# Second measurement
+green_second <- greenseeker |>
   select(!c(time_1, "1_before", "2_before")) |>
   pivot_longer(!c(date, siteID, blockID, plotID, treatment, time_2), names_to = "rep", values_to = "record") |>
   mutate(rep = recode(rep,
@@ -60,7 +65,17 @@ green_second <- green |>
   mutate(measurement = "second")|>
   rename("time" = "time_2")
 
-green.long <- rbind(green_first, green_second)
+# Bind df:s together
+greenseeker_long <- rbind(green_first, green_second)
+
+# Change order of coulmns
+greenseeker_long <- greenseeker_long |>
+  relocate(time, .after = date) |>
+  relocate(measurement, .after = treatment)
+
+# Change decimal deliminator to "."
+greenseeker_long$record <- str_replace(greenseeker_long$record, ",", ".")
+
 
 ##################################################################
 
