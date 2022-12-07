@@ -91,6 +91,7 @@ greenseeker_long[greenseeker_long$plotID == "Hog1GF" &
 
 ##################################################################
 
+
 weather <- greenseeker |>
   select(Site, comment) |>
   drop_na() |>
