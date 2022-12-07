@@ -47,5 +47,18 @@ soil_depth$depth_cm <- str_replace_all(soil_depth$depth_cm, ",", ".")
 # Force soil depth to be read as a numeric variable
 soil_depth$depth_cm <- as.numeric(soil_depth$depth_cm)
 
+# ***Remove plotIDs without measurements:
+soil_depth |>
+  subset(is.na(depth_cm))
+# NAplots: Fau2GB, Ulv1B, Skj4C (these plots have been terminated)
+
+soil_depth_clean <- soil_depth |>
+  filter(plotID != "Fau2GB") |>
+  filter(plotID != "Ulv1B") |>
+  filter(plotID != "Skj4C")
+
+
+
+
 
 
