@@ -46,3 +46,7 @@ moisture$moisture <- as.numeric(moisture$moisture)
 ### Check for duplicate rows
 # moisture |>
 #   distinct(plotID, measurement, .keep_all = TRUE) # no duplicates
+
+# Explort cleaned data
+
+write_csv2(moisture, file = "Clean_data/FUNDER_clean_soil_moisture_point_measurements_2022.csv")
