@@ -68,20 +68,26 @@ green_second <- greenseeker |>
 # Bind df:s together
 greenseeker_long <- rbind(green_first, green_second)
 
-# Change order of coulmns
+# Change order of columns
 greenseeker_long <- greenseeker_long |>
   relocate(time, .after = date) |>
   relocate(measurement, .after = treatment)
 
 # Change decimal deliminator to "."
 greenseeker_long$record <- str_replace(greenseeker_long$record, ",", ".")
+greenseeker_long$record <- as.numeric(greenseeker_long$record)
 
 # Some values stand out: need to check and correct:
 # Hog3B second 1: very high value
 # Hog1GF second 2: high value
 # Many NAs - especially C-plots Alr
 
-
+greenseeker_long[greenseeker_long$plotID == "Hog3B" &
+                   greenseeker_long$measurement == "second" &
+                   greenseeker_long$rep == "1", "record"] <- 100000 #replace
+greenseeker_long[greenseeker_long$plotID == "Hog1GF" &
+                   greenseeker_long$measurement == "second" &
+                   greenseeker_long$rep == "2", "record"] <- 100000 #replace
 
 ##################################################################
 
