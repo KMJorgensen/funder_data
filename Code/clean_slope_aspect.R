@@ -27,3 +27,5 @@ slope_aspect <- slope_aspect_raw |>
                         'Vik' = "Vikesland",
                         'Ves' = "Veskre"))
 
+# Export cleaned dataset
+write.csv2(slope_aspect, file = "Clean_data/FUNDER_clean_slope_and_aspect_2022.csv", row.names = FALSE)
