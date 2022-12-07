@@ -19,9 +19,10 @@ CNP$depth_cm <- str_replace_all(CNP$depth_cm, ",", ".")
 CNP$depth_cm <- as.numeric(CNP$depth_cm)
 
 # Sample Fau2GF has one recorded depth of 66 cm clearly a typo from data entry
+# Checked field noter and value should be 6 cm
 # Manually fix typo:
 
-CNP[CNP$plotID == "Fau2GF" & CNP$core_no == "1", "depth_cm"] <- 6 # ADD CORRECT VALUE HERE!
+CNP[CNP$plotID == "Fau2GF" & CNP$core_no == "1", "depth_cm"] <- 6
 
 # Remove rows where depth is NA
 CNP_clean <- CNP |>
