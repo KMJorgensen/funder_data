@@ -76,6 +76,12 @@ greenseeker_long <- greenseeker_long |>
 # Change decimal deliminator to "."
 greenseeker_long$record <- str_replace(greenseeker_long$record, ",", ".")
 
+# Some values stand out: need to check and correct:
+# Hog3B second 1: very high value
+# Hog1GF second 2: high value
+# Many NAs - especially C-plots Alr
+
+
 
 ##################################################################
 
