@@ -61,7 +61,4 @@ soil_depth_clean <- soil_depth |>
   filter(plotID != "Skj4C")
 
 # Export cleaned dataset
-write.csv(soil_depth_clean, file = "Clean_data/FUNDER_clean_soil_depth_measurements_2022.csv", row.names = FALSE)
-
-
-
+write_csv2(soil_depth_clean, file = "Clean_data/FUNDER_clean_soil_depth_measurements_2022.csv")
