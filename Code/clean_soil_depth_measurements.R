@@ -23,6 +23,9 @@ soil_depth <- soil_depth |>
 soil_depth$siteID <- str_to_title(soil_depth$siteID)
 soil_depth$plotID <- paste(soil_depth$siteID, soil_depth$blockID, soil_depth$treatment, sep = "")
 
+# Edit blockID based on FUNDER naming convention
+soil_depth$blockID <- paste(soil_depth$siteID, soil_depth$blockID, sep = "")
+
 # Recode siteID to full site name
 soil_depth <- soil_depth |>
   relocate(plotID, .after = blockID) |>
@@ -57,7 +60,7 @@ soil_depth_clean <- soil_depth |>
   filter(plotID != "Ulv1B") |>
   filter(plotID != "Skj4C")
 
-
+# Export cleaned dataset
 write.csv(soil_depth_clean, file = "Clean_data/FUNDER_clean_soil_depth_measurements_2022.csv", row.names = FALSE)
 
 
