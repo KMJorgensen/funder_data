@@ -13,7 +13,7 @@ CNP <- CNP |>
   select(!block)
 
 # Replace "," with "." as decimal deliminator
-CNP$depth_cm <- str_replace_all(CNP$depth_cm, ",", ".")
+CNP$depth_cm <- gsub(",", ".", CNP$depth_cm,)
 
 # Force soil depth to be read as a numeric variable
 CNP$depth_cm <- as.numeric(CNP$depth_cm)
