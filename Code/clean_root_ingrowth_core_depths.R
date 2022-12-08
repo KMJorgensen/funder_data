@@ -37,3 +37,4 @@ RIC_clean$RIC_cm <- as.numeric(RIC_clean$RIC_cm)
 #  drop_na(RIC_cm)
 
 # Export cleaned dataset
+write_csv(RIC_clean, "Clean_data/FUNDER_clean_root_ingrowth_core_depths_2022.csv")
