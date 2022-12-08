@@ -74,7 +74,7 @@ greenseeker_long <- greenseeker_long |>
   relocate(measurement, .after = treatment)
 
 # Change decimal deliminator to "."
-greenseeker_long$record <- str_replace(greenseeker_long$record, ",", ".")
+greenseeker_long$record <- gsub(",", ".", greenseeker_long$record)
 greenseeker_long$record <- as.numeric(greenseeker_long$record)
 
 # Some values stand out: need to check and correct:
@@ -89,8 +89,10 @@ greenseeker_long[greenseeker_long$plotID == "Hog1GF" &
                    greenseeker_long$measurement == "second" &
                    greenseeker_long$rep == "2", "record"] <- 100000 #replace
 
-##################################################################
+# Explort cleaned dataset
+write_csv2(weather, file = "Clean_data/FUNDER_clean_greenseeker_measurements_2022.csv")
 
+##################################################################
 
 weather <- greenseeker |>
   select(Site, comment) |>
