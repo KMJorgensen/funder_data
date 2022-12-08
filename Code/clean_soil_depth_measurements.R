@@ -45,7 +45,7 @@ soil_depth <- soil_depth |>
                          'Ves' = "Veskre"))
 
 # Replace "," with "." as decimal deliminator
-soil_depth$depth_cm <- str_replace_all(soil_depth$depth_cm, ",", ".")
+soil_depth$depth_cm <- gsub(",", ".", soil_depth$depth_cm)
 
 # Force soil depth to be read as a numeric variable
 soil_depth$depth_cm <- as.numeric(soil_depth$depth_cm)
