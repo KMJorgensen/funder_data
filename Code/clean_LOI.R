@@ -43,3 +43,11 @@ LOI <- LOI |>
   mutate(OM_proportion = OM_g/dw_g) |>
   mutate(inorgC_proportion = inorgC_g/dw_g)
 
+# Pick out relevant columns and remove rows with missing values (plots that don't exist)
+LOI_clean <- LOI |>
+  select(siteID, blockID, plotID, treatment, OM_proportion, inorgC_proportion) |>
+  drop_na(OM_proportion)
+
+# Export cleaned dataset
+write_csv2(LOI_clean, file = "Clean_data/FUNDER_clean_LOI_2022.csv")
+
