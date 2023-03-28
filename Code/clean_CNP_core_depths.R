@@ -29,6 +29,6 @@ CNP_clean <- CNP |>
   drop_na(depth_cm)
 
 # Export cleaned dataset
-write_csv2(CNP_clean, file = Clean_data/FUNDER_clean_CNP_core_depths_2022.csv)
+write_csv2(CNP_clean, file = "Clean_data/FUNDER_clean_CNP_core_depths_2022.csv")
 
 
