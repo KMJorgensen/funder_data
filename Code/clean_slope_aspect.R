@@ -6,7 +6,7 @@ library(tidyverse)
 
 slope_aspect_raw <- read_csv2("Data/FUNDER_raw_slope_and_aspect_2022.csv")
 
-# Get raw dataset from OSF, this is currently not workning. Will need to be fixed in the future.
+# Get raw dataset from OSF, this is currently not working. Will need to be fixed in the future.
 #get_file(node = "vd59m",
 #                file = "FUNDER_raw_slope_and_aspect_2022.csv",
  #        path = "Data",
