@@ -2,16 +2,15 @@
 
 # Loading packages
 library(dataDownloader) # to access raw datasets on OSF
-library(osfr)
 library(tidyverse)
 
 slope_aspect_raw <- read_csv2("Data/FUNDER_raw_slope_and_aspect_2022.csv")
 
-# Get raw dataset from OSF
-get_file(node = "vd59m",
-                file = "FUNDER_raw_slope_and_aspect_2022.csv",
-         path = "Data",
-         remote_path = "6_Environment/Raw_data")
+# Get raw dataset from OSF, this is currently not workning. Will need to be fixed in the future.
+#get_file(node = "vd59m",
+#                file = "FUNDER_raw_slope_and_aspect_2022.csv",
+ #        path = "Data",
+  #       remote_path = "6_Environment/Raw_data")
 
 ### Clean dataset ####
 # Rename columns
