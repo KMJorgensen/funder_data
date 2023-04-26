@@ -32,7 +32,7 @@ moisture <- moisture_raw |>
 
 ### Remove missing data ####
 # Non-existing plots: Fau2GB, Ulv1B
-# No measurements made in site Skjelingahaugen due to bad weather condiditons
+# No measurements made in site Skjelingahaugen due to bad weather conditions
 
 moisture <- moisture |>
   filter(siteID != "Skjelingahaugen") |>
@@ -47,6 +47,6 @@ moisture$moisture <- as.numeric(moisture$moisture)
 # moisture |>
 #   distinct(plotID, measurement, .keep_all = TRUE) # no duplicates
 
-# Explort cleaned data
+# Export cleaned data
 
 write_csv2(moisture, file = "Clean_data/FUNDER_clean_soil_moisture_point_measurements_2022.csv")
